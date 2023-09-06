@@ -35,8 +35,8 @@ def messages():
 def messages_by_id(id):
     message = Message.query.get(id)
     if request.method == "PATCH":
-       body = request.form["body"]
-       message.body = body
+       msg = request.get_json()
+       message.body = msg["body"]
        db.session.add(message)
        db.session.commit()
 
